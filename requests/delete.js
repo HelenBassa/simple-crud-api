@@ -8,14 +8,11 @@ module.exports = (req, res) => {
 
   switch (url) {
     case `/person/${id}`:
-      res.statusCode = status.NO_CONTENT;
-      res.setHeader("Content-Type", "application/json");
-      res.write(JSON.stringify(persons.deletePerson(id)));
-      res.end();
+      persons.deletePerson({ res, id });
       break;
 
     default:
-      res.statusCode = status.BAD_REQUEST;
+      res.statusCode = status.NOT_FOUND;
       res.write(`Cannot DELETE ${url}`);
       res.end();
   }

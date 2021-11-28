@@ -8,15 +8,12 @@ module.exports = (req, res) => {
 
   switch (url) {
     case `/person/${id}`:
-      res.statusCode = status.OK;
-      res.setHeader("Content-Type", "application/json");
-      let person = req.body;
-      res.write(JSON.stringify(persons.editPerson(id, person)));
-      res.end();
+      const data = req.body;
+      persons.editPerson({ res, id, data });
       break;
 
     default:
-      res.statusCode = status.BAD_REQUEST;
+      res.statusCode = status.NOT_FOUND;
       res.write(`Cannot PUT ${url}`);
       res.end();
       break;

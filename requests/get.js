@@ -8,21 +8,15 @@ module.exports = (req, res) => {
 
   switch (url) {
     case "/person":
-      res.statusCode = status.OK;
-      res.setHeader("Content-Type", "application/json");
-      res.write(JSON.stringify(persons.getAllPersons()));
-      res.end();
+      persons.getAllPersons(res);
       break;
 
     case `/person/${id}`:
-      res.statusCode = status.OK;
-      res.setHeader("Content-Type", "application/json");
-      res.write(JSON.stringify(persons.getPerson(id)));
-      res.end();
+      persons.getPerson({ res, id });
       break;
 
     default:
-      res.statusCode = status.BAD_REQUEST;
+      res.statusCode = status.NOT_FOUND;
       res.write(`Cannot GET ${url}`);
       res.end();
       break;
