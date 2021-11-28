@@ -29,7 +29,7 @@ class Persons {
         responseBuild({
           res,
           code: status.NOT_FOUND,
-          message: `Person with ${id} isn't exist`,
+          message: `Person with ID: ${id} isn't exist`,
         });
       }
     } else {
